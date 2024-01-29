@@ -1,11 +1,12 @@
-﻿using System.Linq.Expressions;
+﻿using FINBOURNE.Cache;
+using System.Linq.Expressions;
 
 namespace FINBOURNE.GenericCache
 {
     public interface ILRUCache<TKey, TItem>
     {
         TItem Get<T>(TKey key);
-        TItem GetList<T>(IEnumerable<string> keys);
+        IEnumerable<ICacheItem<TKey, TItem>> GetList<T>(IEnumerable<TKey> keys);
         bool TryGetItem<T>(TKey key, out TItem value);
         void SetItem(TKey key, TItem value);
         void SetItems(Expression<Func<TItem, TKey>> keySelector, IEnumerable<TItem> values);

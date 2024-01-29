@@ -22,11 +22,18 @@ namespace FINBOURNE.GenericCache
         {
             lock (_balanceLock)
             {
-                // Code
+                LinkedListNode<CacheItem<TKey, TItem>>? node;
+                if (_cacheDict.TryGetValue(key, out node))
+                {
+                    // Remove used node
+                    // Add new node
+                    return node.Value.Value;
+                }
+                throw new Exception("Item was not found"); // TODO: Consider a more accurate exception
             }
         }
 
-        public TItem GetList<T>(IEnumerable<string> keys)
+        public IEnumerable<ICacheItem<TKey, TItem>> GetList<T>(IEnumerable<string> keys)
         {
             lock (_balanceLock)
             {
