@@ -9,10 +9,9 @@ namespace FINBOURNE.Cache
 {
     internal record CacheItem<TKey, TItem>(TKey Key, TItem Value) : ICacheItem<TKey, TItem>;
 
-    public interface ICacheItem<TKey, TItem>
+    internal interface ICacheItem<TKey, TItem>
     {
         public TKey Key { get; }
         public TItem Value { get; }
-
     }
 }
