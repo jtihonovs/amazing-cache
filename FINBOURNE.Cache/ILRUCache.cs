@@ -5,9 +5,9 @@ namespace FINBOURNE.GenericCache
 {
     public interface ILRUCache<TKey, TItem>
     {
-        TItem Get<T>(TKey key);
-        IEnumerable<ICacheItem<TKey, TItem>> GetList<T>(IEnumerable<TKey> keys);
-        bool TryGetItem<T>(TKey key, out TItem value);
+        TItem Get(TKey key);
+        IEnumerable<KeyValuePair<TKey, TItem>> GetList(IEnumerable<TKey> keys);
+        bool TryGetItem(TKey key, out TItem? value);
         void SetItem(TKey key, TItem value);
         void SetItems(Expression<Func<TItem, TKey>> keySelector, IEnumerable<TItem> values);
     }
