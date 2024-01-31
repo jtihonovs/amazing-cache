@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace FINBOURNE.GenericCache
 {
-    internal class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
+    public class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
         where TKey : notnull
         where TItem : notnull
     {
@@ -42,7 +42,7 @@ namespace FINBOURNE.GenericCache
                     MoveNodeToEnd(node);
                     return node.Value.Value;
                 }
-                throw new Exception("Item was not found"); // TODO: Consider a more accurate exception
+                throw new KeyNotFoundException("Key was not found"); 
             }
         }
 
