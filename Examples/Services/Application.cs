@@ -20,6 +20,15 @@ namespace FINBOURNE.App.Services
             _cache.SetItem("test", 2);
             var res = _cache.Get("test");
             Console.WriteLine($"Res: {res}");
+
+            _cache.SetItem("test 2", 2);
+            var res2 = _cache.Get("test 2");
+            Console.WriteLine($"Res: {res}");
+
+            res = _cache.Get("test");
+            Console.WriteLine($"Res: {res}");
+
+
         }
     }
 }

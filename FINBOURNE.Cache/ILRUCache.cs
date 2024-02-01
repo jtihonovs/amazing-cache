@@ -5,7 +5,6 @@ namespace FINBOURNE.GenericCache
 {
     public interface ILRUCache<TKey, TItem>
         where TKey : notnull
-        where TItem : notnull
     {
         TItem Get(TKey key);
         IEnumerable<KeyValuePair<TKey, TItem>> GetList(IEnumerable<TKey> keys);
@@ -15,7 +14,6 @@ namespace FINBOURNE.GenericCache
     }
 
     public interface ILRUCache<TItem> : ILRUCache<string, TItem>
-        where TItem : notnull
     { }
 
 }

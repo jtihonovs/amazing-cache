@@ -10,9 +10,7 @@ namespace FINBOURNE.GenericCache
 {
     public class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
         where TKey : notnull
-        where TItem : notnull
     {
-        [Range(0, int.MaxValue, ErrorMessage = "Capacity for LRUCache should be more than 0.")]
         private readonly int _capacity; 
         private readonly object _balanceLock;
         private readonly Dictionary<TKey, LinkedListNode<CacheItem<TKey, TItem>>> _cacheDict;
@@ -20,7 +18,7 @@ namespace FINBOURNE.GenericCache
 
         public LRUCache()
         {
-            _capacity = 100; // TODO: default should come from settings 
+            _capacity = 100;
             _balanceLock = new object();
             _cacheDict = new Dictionary<TKey, LinkedListNode<CacheItem<TKey, TItem>>>();
             _lruList = new LinkedList<CacheItem<TKey, TItem>>(); // Should I use KeyValuePair?
@@ -28,7 +26,7 @@ namespace FINBOURNE.GenericCache
 
         public LRUCache(int capacity) : this()
         {
-            if (capacity > 0) throw new ArgumentException("Capacity for LRUCache should be more than 0.");
+            if (capacity < 1) throw new ArgumentException("Capacity for LRUCache should be at least 1.");
             _capacity = capacity;
         }
 
@@ -120,7 +118,9 @@ namespace FINBOURNE.GenericCache
         }
     }
 
-    internal class LRUCache<TItem> : LRUCache<string, TItem>, ILRUCache<TItem>
-        where TItem : notnull
-    { }
+    public class LRUCache<TItem> : LRUCache<string, TItem>, ILRUCache<TItem>
+    {
+        public LRUCache() : base() { }
+        public LRUCache(int capacity) : base(capacity) { }
+    }
 }
