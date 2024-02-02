@@ -1,7 +1,6 @@
-﻿using FINBOURNE.Cache;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace FINBOURNE.GenericCache
+namespace FINBOURNE.LRUCache
 {
     public interface ILRUCache<TKey, TItem> : IDisposable
         where TKey : notnull

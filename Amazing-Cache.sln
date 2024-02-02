@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67B5B20E-D5B7-4C0D-85B7-FA4EDB428255}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FINBOURNE.Cache", "FINBOURNE.Cache\FINBOURNE.Cache.csproj", "{46342620-1947-45BC-A5B3-7CF641D48440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FINBOURNE.LRUCache", "FINBOURNE.Cache\FINBOURNE.LRUCache.csproj", "{46342620-1947-45BC-A5B3-7CF641D48440}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FINBOURNE.App", "Examples\FINBOURNE.App.csproj", "{B353C317-DC43-4EB8-B2FC-93555612C3AB}"
 EndProject
@@ -32,9 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{46342620-1947-45BC-A5B3-7CF641D48440} = {67B5B20E-D5B7-4C0D-85B7-FA4EDB428255}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {840135E3-429F-44B7-9860-BFACAE870E7C}

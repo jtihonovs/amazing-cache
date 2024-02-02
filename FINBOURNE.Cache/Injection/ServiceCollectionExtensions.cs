@@ -1,13 +1,6 @@
-﻿using FINBOURNE.GenericCache;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace FINBOURNE.Cache.Injection
+namespace FINBOURNE.LRUCache.Injection
 {
     public static class ServiceCollectionExtensions
     {

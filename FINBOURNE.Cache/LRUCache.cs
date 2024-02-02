@@ -1,12 +1,7 @@
-﻿using FINBOURNE.Cache.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
+﻿using FINBOURNE.LRUCache.Model;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 
-namespace FINBOURNE.GenericCache
+namespace FINBOURNE.LRUCache
 {
     public class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
         where TKey : notnull

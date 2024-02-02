@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using FINBOURNE.GenericCache;
-using FINBOURNE.Cache.Injection;
+﻿using FINBOURNE.LRUCache.Injection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FINBOURNE.App;
