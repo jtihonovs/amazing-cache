@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 
 namespace FINBOURNE.LRUCache
 {
+    // Least Recently Used (LRU) Cache - organizes items in order of use
     public class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
         where TKey : notnull
     {
