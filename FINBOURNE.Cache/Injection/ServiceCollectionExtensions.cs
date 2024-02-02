@@ -18,7 +18,7 @@ namespace FINBOURNE.Cache.Injection
         public static IServiceCollection AddCacheItemTypes(this IServiceCollection services, IEnumerable<(Type, Type)> cacheKeyValues, int capacity)
             => RegisterCacheItemServices(services, cacheKeyValues, capacity);
 
-        public static IServiceCollection AddCacheItemTypes(this IServiceCollection services, IEnumerable<(Type, Type)> cacheKeycacheValueTypes, int capacity, ServiceLifetime serviceLifetime)
+        public static IServiceCollection AddCacheKeyValuePair(this IServiceCollection services, IEnumerable<(Type, Type)> cacheKeycacheValueTypes, int capacity, ServiceLifetime serviceLifetime)
             => RegisterCacheItemServices(services, cacheKeycacheValueTypes, capacity, serviceLifetime);
 
         public static IServiceCollection AddCacheItemTypes(this IServiceCollection services, IEnumerable<(Type, Type)> cacheValueTypes, ServiceLifetime serviceLifetime)

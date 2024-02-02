@@ -1,20 +1,22 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using FINBOURNE.App.Services;
 using FINBOURNE.GenericCache;
 using FINBOURNE.Cache.Injection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FINBOURNE.App;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
 
         // Add Cache key/value type pairs
-        services.AddCacheItemTypes(
+        services.AddCacheKeyValuePair(
             [
                 (typeof(string), typeof(int)),
                 (typeof(int), typeof(string)),
+                (typeof(string), typeof(Person))
             ],
-            ServiceLifetime.Singleton);
+            capacity: 5,
+            serviceLifetime: ServiceLifetime.Singleton);
 
 
         services.AddSingleton<Application>();

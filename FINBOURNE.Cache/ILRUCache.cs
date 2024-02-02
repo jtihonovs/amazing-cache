@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace FINBOURNE.GenericCache
 {
-    public interface ILRUCache<TKey, TItem>
+    public interface ILRUCache<TKey, TItem> : IDisposable
         where TKey : notnull
     {
         TItem Get(TKey key);
@@ -11,6 +11,8 @@ namespace FINBOURNE.GenericCache
         bool TryGetItem(TKey key, out TItem? value);
         void SetItem(TKey key, TItem value);
         void SetItems(Expression<Func<TItem, TKey>> keySelector, IEnumerable<TItem> values);
+        void Remove(TKey key);
+        void Clear();
     }
 
     public interface ILRUCache<TItem> : ILRUCache<string, TItem>

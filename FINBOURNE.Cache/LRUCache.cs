@@ -1,4 +1,4 @@
-﻿using FINBOURNE.Cache;
+﻿using FINBOURNE.Cache.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,7 @@ namespace FINBOURNE.GenericCache
             _capacity = 100;
             _balanceLock = new object();
             _cacheDict = new Dictionary<TKey, LinkedListNode<CacheItem<TKey, TItem>>>();
-            _lruList = new LinkedList<CacheItem<TKey, TItem>>(); // Should I use KeyValuePair?
+            _lruList = new LinkedList<CacheItem<TKey, TItem>>();
         }
 
         public LRUCache(int capacity) : this()
@@ -40,7 +40,7 @@ namespace FINBOURNE.GenericCache
                     MoveNodeToEnd(node);
                     return node.Value.Value;
                 }
-                throw new KeyNotFoundException("Key was not found"); 
+                throw new KeyNotFoundException($"Key: '{key}' was not found!"); 
             }
         }
 
@@ -70,13 +70,16 @@ namespace FINBOURNE.GenericCache
 
         public void SetItem(TKey key, TItem value)
         {
+
+            if(key is null)
+            {
+                throw new ArgumentNullException("Key cannot be null");
+            }
+
             lock (_balanceLock)
             {
-                if(_cacheDict.TryGetValue(key, out var existingNode))
-                {
-                    _lruList.Remove(existingNode);
-                    _cacheDict.Remove(key);
-                } else if(_cacheDict.Count >= _capacity)
+                RemoveIfExists(key);
+                if(_cacheDict.Count >= _capacity)
                 {
                     RemoveFirst();
                 }
@@ -101,6 +104,27 @@ namespace FINBOURNE.GenericCache
             }
         }
 
+        public void Clear()
+        {
+            lock (_balanceLock)
+            {
+                _lruList.Clear();
+                _cacheDict.Clear();
+            }
+        }
+
+        public void Remove(TKey key)
+        {
+            lock(_balanceLock)
+            {
+                var isRemoved = RemoveIfExists(key);
+                if (!isRemoved)
+                {
+                    throw new KeyNotFoundException($"Could not remove cache item by the key: {key}");
+                }
+            }
+        }
+
         private void RemoveFirst()
         {
             LinkedListNode<CacheItem<TKey, TItem>>? node = _lruList.First;
@@ -111,10 +135,26 @@ namespace FINBOURNE.GenericCache
             }
         }
 
+        private bool RemoveIfExists(TKey key)
+        {
+            if (_cacheDict.TryGetValue(key, out var existingNode))
+            {
+                _lruList.Remove(existingNode);
+                _cacheDict.Remove(key);
+                return true;
+            }
+            return false;
+        }
+
         private void MoveNodeToEnd(LinkedListNode<CacheItem<TKey, TItem>> node)
         {
             _lruList.Remove(node);
             _lruList.AddLast(node);
+        }
+
+        public void Dispose()
+        {
+            Clear();
         }
     }
 
