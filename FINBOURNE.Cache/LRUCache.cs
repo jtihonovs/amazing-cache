@@ -7,7 +7,7 @@ namespace FINBOURNE.LRUCache
     public class LRUCache<TKey, TItem> : ILRUCache<TKey, TItem>
         where TKey : notnull
     {
-        private readonly int _capacity; 
+        private readonly int _capacity; // Max number of cached items
         private readonly object _balanceLock;
         private readonly Dictionary<TKey, LinkedListNode<CacheItem<TKey, TItem>>> _cacheDict;
         private readonly LinkedList<CacheItem<TKey, TItem>> _lruList;
