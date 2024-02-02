@@ -12,8 +12,8 @@ namespace FINBOURNE.Tests.Cache
 
         public LRUCacheTests()
         {
-            // Add DefaultList to cache
-            // FirstName property will remain a key
+            // Add AllPeopleList to cache
+            // FirstName property will remain as a key
             _personCache = new LRUCache<string, Person>(capacity: 3);
             _personCache.SetItems((keyValue) => keyValue.firstName, AllPeopleList); 
         }
