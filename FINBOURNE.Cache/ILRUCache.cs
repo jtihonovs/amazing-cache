@@ -2,7 +2,11 @@
 
 namespace FINBOURNE.LRUCache
 {
-    public interface ILRUCache<TKey, TItem> : IDisposable
+    public interface ILRUCache : IDisposable
+    {
+    }
+
+    public interface ILRUCache<TKey, TItem> : ILRUCache
         where TKey : notnull
     {
         TItem Get(TKey key);
